@@ -19074,7 +19074,10 @@ var ReactClass = React.createClass({
 	getInitialState: function getInitialState() {
 		return {
 			isHeaderHidden: false,
-			title: 'Statefule React Component',
+			// Note: Keep the minimum items in state that you need to, e.g. the title below never changes, so no
+			// need to keep it in state. Things in State are changed by you or the user; and things in Render are
+			// updated by React
+			// title: 'Stateful React Component',
 			buttonText: 'Hide Header'
 		};
 	},
@@ -19103,7 +19106,8 @@ var ReactClass = React.createClass({
 	},
 
 	render: function render() {
-		var headerElement = React.createElement('h1', { className: 'header', key: 'header' }, this.state.title);
+		var title = 'Stateful React Component';
+		var headerElement = React.createElement('h1', { className: 'header', key: 'header' }, title);
 
 		var buttonElement = React.createElement('button', { className: 'btn btn-default', onClick: this.handleClick, key: 'button' }, this.state.buttonText);
 
