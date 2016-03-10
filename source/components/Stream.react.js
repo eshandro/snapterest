@@ -5,21 +5,22 @@ var Header = require('./Header.react');
 
 var Stream = React.createClass({
 
-	setInitialState: function () {
+	getInitialState: function () {
 		return {
 			tweet: null
 		}
 	},
 
 	componentDidMount: function() {
-		SnapkiteStreamClient.inititalizeStream(this.handleNewTweet);
+		SnapkiteStreamClient.initializeStream(this.handleNewTweet);
 	},
 
-	componentWillUpdate: function(nextProps, nextState) {
+	componentWillUnmount: function() {
 		SnapkiteStreamClient.destroyStream();
 	},
 
 	handleNewTweet: function (tweet) {
+		console.log('initializeStream() callback runs');
 		this.setState({
 			tweet: tweet 
 		});
