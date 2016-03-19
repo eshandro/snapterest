@@ -26778,9 +26778,11 @@ var Stream = React.createClass({
 		var tweet = this.state.tweet;
 
 		if (tweet) {
+			console.log('In Stream.react.js render tweet exists');
 			return React.createElement(StreamTweet, { tweet: tweet, onAddTweetToCollection: this.props.onAddTweetToCollection });
 		}
 
+		console.log('In Stream.react.js render tweet does not exist');
 		return React.createElement(Header, { text: 'Waiting for public photos from Twitter...' });
 	}
 
@@ -26814,7 +26816,7 @@ var StreamTweet = React.createClass({
 		});
 
 		window.snapterest = {
-			numberOfRecivedTweets: 1,
+			numberofReceivedTweets: 1,
 			numberOfDisplayedTweets: 1
 		};
 	},
@@ -26850,7 +26852,7 @@ var StreamTweet = React.createClass({
 			headerText: headerText
 		});
 
-		window.snapterest.numberOfRecivedTweets++;
+		window.snapterest.numberofReceivedTweets++;
 	},
 
 	shouldComponentUpdate: function (nextProps, nextState) {
@@ -26883,7 +26885,7 @@ var StreamTweet = React.createClass({
 			null,
 			React.createElement(Header, { text: this.state.headerText }),
 			React.createElement(Tweet, {
-				tweet: this.props.Tweet,
+				tweet: this.props.tweet,
 				onImageClick: this.props.onAddTweetToCollection })
 		);
 	}

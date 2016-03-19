@@ -21,7 +21,7 @@ var StreamTweet = React.createClass({
 		});
 
 		window.snapterest = {
-			numberOfRecivedTweets: 1,
+			numberofReceivedTweets: 1,
 			numberOfDisplayedTweets: 1
 		};
 	},
@@ -57,7 +57,7 @@ var StreamTweet = React.createClass({
 			headerText: headerText
 		});
 
-		window.snapterest. numberOfRecivedTweets++;
+		window.snapterest.numberofReceivedTweets++;
 	},
 
 	shouldComponentUpdate: function(nextProps, nextState) {
@@ -74,7 +74,7 @@ var StreamTweet = React.createClass({
 	componentDidUpdate: function(prevProps, prevState) {
 		console.log('[Snapterest] StreamTweet: 7. Running componentDidUpdate()');
 
-		window.snapterest. numberOfDisplayedTweets++;
+		window.snapterest.numberOfDisplayedTweets++;
 
 	},
 
@@ -91,7 +91,7 @@ var StreamTweet = React.createClass({
 			<section>
 				<Header text={this.state.headerText} />
 				<Tweet
-					tweet={this.props.Tweet} 
+					tweet={this.props.tweet} 
 					onImageClick={this.props.onAddTweetToCollection} />
 			</section>
 		);
