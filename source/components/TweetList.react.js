@@ -24,9 +24,9 @@ var TweetList = React.createClass({
 		var tweetElement;
 
 		if (handleRemoveTweetFromCollection) {
-			tweetElement = {
+			tweetElement = (
 				<Tweet tweet={tweet} onImageClick={handleRemoveTweetFromCollection} />
-			};
+			);
 		} else {
 			tweetElement = <Tweet tweet={tweet} />;
 		}
@@ -34,6 +34,16 @@ var TweetList = React.createClass({
 		return <li style={listItemStyle} key={tweet.id}>{tweetElement}</li>;
 	},
 
-	
+	render: function() {
+		var tweetElements = this.getListOfTweetIds().map(this.getTweetElement);
 
-})
+		return (
+			<ul style={listStyle}>
+				{tweetElements}
+			</ul>
+		);
+	}
+
+});
+
+module.exports = TweetList;
