@@ -17,17 +17,18 @@ var CollectionControls = React.createClass({
 
 	getHeaderText: function() {
 		var numberOfTweetsInCollection = this.props.numberOfTweetsInCollection;
-
+		console.log(this.props.numberOfTweetsInCollection);
+		console.log('numberOfTweetsInCollection in CollectionControls.react.js ', numberOfTweetsInCollection);
 		var text = numberOfTweetsInCollection;
 
 		if (numberOfTweetsInCollection === 1) {
-			text = text + 'tweet in your';
+			text = text + ' tweet in your';
 		} else {
-			text = text + 'tweets in your';
+			text = text + ' tweets in your';
 		}
 
 		return (
-			<span>{text}<strong>{this.state.name}</strong> collection</span>
+			<span>{text} <strong>{this.state.name}</strong> collection</span>
 		)
 	},
 

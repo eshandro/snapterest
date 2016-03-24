@@ -15,6 +15,13 @@ var imageStyle = {
 	border: '1px solid #fff'
 };
 
+var tweetTextStyle = {
+	textAlign: 'left',
+	marginTop: '.5em',
+	fontWeight: '500',
+	fontSize: '.9em'
+}
+
 
 var Tweet = React.createClass({
 	propTypes: {
@@ -45,10 +52,13 @@ var Tweet = React.createClass({
 	render: function() {
 		var tweet = this.props.tweet;
 		var tweetMediaUrl = tweet.media[0].url;
+		console.log('tweet=', tweet);
+		var tweetText = tweet.text;
 
 		return (
 			<div style={tweetStyle}>
 				<img src={tweetMediaUrl} onClick={this.handleImageClick} style={imageStyle} />
+				<p style={tweetTextStyle}>{tweetText}</p>
 			</div>
 	 	);
 	}

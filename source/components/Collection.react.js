@@ -23,14 +23,14 @@ var Collection = React.createClass({
 		return Object.keys(this.props.tweets);
 	},
 
-	getNumberofTweetsInCollection: function () {
+	getNumberOfTweetsInCollection: function () {
 		return this.getListOfTweetIds().length;
 	},
 
 	render: function() {
-		var numberofTweetsInCollection = this.getNumberofTweetsInCollection();
+		var numberOfTweetsInCollection = this.getNumberOfTweetsInCollection();
 
-		if (numberofTweetsInCollection > 0) {
+		if (numberOfTweetsInCollection > 0) {
 
 			var tweets = this.props.tweets;
 			var htmlMarkup = this.createHTMLMarkupStringofTweetList();
@@ -39,7 +39,7 @@ var Collection = React.createClass({
 
 			return (
 				<div>
-					<CollectionControls numberofTweetsInCollection={numberofTweetsInCollection} htmlMarkup={htmlMarkup} 
+					<CollectionControls numberOfTweetsInCollection={numberOfTweetsInCollection} htmlMarkup={htmlMarkup} 
 					onRemoveAllTweetsFromCollection={removeAllTweetsFromCollection} />
 					<TweetList tweets={tweets} onRemoveTweetFromCollection={handleRemoveTweetFromCollection} />
 				</div>
@@ -47,7 +47,7 @@ var Collection = React.createClass({
 		}
 
 		return (
-			<Header text="Your colleciton is empty" />
+			<Header text="Your collection is empty" />
 		);
 	}
 });

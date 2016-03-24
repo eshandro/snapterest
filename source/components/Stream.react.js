@@ -30,13 +30,13 @@ var Stream = React.createClass({
 		var tweet = this.state.tweet;
 
 		if (tweet) {
-			console.log('In Stream.react.js render tweet exists');
+			// console.log('In Stream.react.js render tweet exists');
 			return (
 				<StreamTweet tweet={tweet} onAddTweetToCollection={this.props.onAddTweetToCollection} />
 			);
 		}
 
-		console.log('In Stream.react.js render tweet does not exist');
+		// console.log('In Stream.react.js render tweet does not exist');
 		return (
 			<Header text="Waiting for public photos from Twitter..." />
 		);

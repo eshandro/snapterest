@@ -26507,14 +26507,14 @@ var Collection = React.createClass({
 		return Object.keys(this.props.tweets);
 	},
 
-	getNumberofTweetsInCollection: function () {
+	getNumberOfTweetsInCollection: function () {
 		return this.getListOfTweetIds().length;
 	},
 
 	render: function () {
-		var numberofTweetsInCollection = this.getNumberofTweetsInCollection();
+		var numberOfTweetsInCollection = this.getNumberOfTweetsInCollection();
 
-		if (numberofTweetsInCollection > 0) {
+		if (numberOfTweetsInCollection > 0) {
 
 			var tweets = this.props.tweets;
 			var htmlMarkup = this.createHTMLMarkupStringofTweetList();
@@ -26524,13 +26524,13 @@ var Collection = React.createClass({
 			return React.createElement(
 				'div',
 				null,
-				React.createElement(CollectionControls, { numberofTweetsInCollection: numberofTweetsInCollection, htmlMarkup: htmlMarkup,
+				React.createElement(CollectionControls, { numberOfTweetsInCollection: numberOfTweetsInCollection, htmlMarkup: htmlMarkup,
 					onRemoveAllTweetsFromCollection: removeAllTweetsFromCollection }),
 				React.createElement(TweetList, { tweets: tweets, onRemoveTweetFromCollection: handleRemoveTweetFromCollection })
 			);
 		}
 
-		return React.createElement(Header, { text: 'Your colleciton is empty' });
+		return React.createElement(Header, { text: 'Your collection is empty' });
 	}
 });
 
@@ -26557,19 +26557,21 @@ var CollectionControls = React.createClass({
 
 	getHeaderText: function () {
 		var numberOfTweetsInCollection = this.props.numberOfTweetsInCollection;
-
+		console.log(this.props.numberOfTweetsInCollection);
+		console.log('numberOfTweetsInCollection in CollectionControls.react.js ', numberOfTweetsInCollection);
 		var text = numberOfTweetsInCollection;
 
 		if (numberOfTweetsInCollection === 1) {
-			text = text + 'tweet in your';
+			text = text + ' tweet in your';
 		} else {
-			text = text + 'tweets in your';
+			text = text + ' tweets in your';
 		}
 
 		return React.createElement(
 			'span',
 			null,
 			text,
+			' ',
 			React.createElement(
 				'strong',
 				null,
@@ -26778,11 +26780,11 @@ var Stream = React.createClass({
 		var tweet = this.state.tweet;
 
 		if (tweet) {
-			console.log('In Stream.react.js render tweet exists');
+			// console.log('In Stream.react.js render tweet exists');
 			return React.createElement(StreamTweet, { tweet: tweet, onAddTweetToCollection: this.props.onAddTweetToCollection });
 		}
 
-		console.log('In Stream.react.js render tweet does not exist');
+		// console.log('In Stream.react.js render tweet does not exist');
 		return React.createElement(Header, { text: 'Waiting for public photos from Twitter...' });
 	}
 
@@ -26912,6 +26914,13 @@ var imageStyle = {
 	border: '1px solid #fff'
 };
 
+var tweetTextStyle = {
+	textAlign: 'left',
+	marginTop: '.5em',
+	fontWeight: '500',
+	fontSize: '.9em'
+};
+
 var Tweet = React.createClass({
 	displayName: 'Tweet',
 
@@ -26943,11 +26952,18 @@ var Tweet = React.createClass({
 	render: function () {
 		var tweet = this.props.tweet;
 		var tweetMediaUrl = tweet.media[0].url;
+		console.log('tweet=', tweet);
+		var tweetText = tweet.text;
 
 		return React.createElement(
 			'div',
 			{ style: tweetStyle },
-			React.createElement('img', { src: tweetMediaUrl, onClick: this.handleImageClick, style: imageStyle })
+			React.createElement('img', { src: tweetMediaUrl, onClick: this.handleImageClick, style: imageStyle }),
+			React.createElement(
+				'p',
+				{ style: tweetTextStyle },
+				tweetText
+			)
 		);
 	}
 });
