@@ -1,4 +1,4 @@
-Jest.dontMock('../Header.react');
+jest.dontMock('../Header.react');
 
 describe('Header component', function(){
 
