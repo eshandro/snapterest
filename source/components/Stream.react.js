@@ -1,28 +1,40 @@
 var React = require('react');
-var SnapkiteStreamClient = require('snapkite-stream-client');
+// No longer need this with Flux architecture
+// var SnapkiteStreamClient = require('snapkite-stream-client');
 var StreamTweet = require('./StreamTweet.react');
 var Header = require('./Header.react');
+const TweetStore = require('../stores/TweetStore');
 
 var Stream = React.createClass({
 
 	getInitialState: function () {
 		return {
-			tweet: null
+			// tweet: null
+			tweet: TweetStore.getTweet()
 		}
 	},
 
 	componentDidMount: function() {
-		SnapkiteStreamClient.initializeStream(this.handleNewTweet);
+		// The below was used prior to adding Flux architecture
+		// SnapkiteStreamClient.initializeStream(this.handleNewTweet);
+		TweetStore.addChangeListener(this.onTweetChange);
 	},
 
 	componentWillUnmount: function() {
-		SnapkiteStreamClient.destroyStream();
+		// SnapkiteStreamClient.destroyStream();
+		TweetStore.removeChangeListener(this.onTweetChange);
 	},
 
-	handleNewTweet: function (tweet) {
-		console.log('initializeStream() callback runs');
+	// handleNewTweet: function (tweet) {
+	// 	console.log('initializeStream() callback runs');
+	// 	this.setState({
+	// 		tweet: tweet 
+	// 	});
+	// },
+
+	onTweetChange: function () {
 		this.setState({
-			tweet: tweet 
+			tweet: TweetStore.getTweet() 
 		});
 	},
 
@@ -32,7 +44,7 @@ var Stream = React.createClass({
 		if (tweet) {
 			// console.log('In Stream.react.js render tweet exists');
 			return (
-				<StreamTweet tweet={tweet} onAddTweetToCollection={this.props.onAddTweetToCollection} />
+				<StreamTweet tweet={tweet} />
 			);
 		}
 

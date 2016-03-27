@@ -38,4 +38,4 @@ function handleAction(action) {
 
 TweetStore.dispatchToken = AppDispatcher.register(handleAction);
 
-modules.exports = TweetStore;
+module.exports = TweetStore;
